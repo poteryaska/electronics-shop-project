@@ -49,18 +49,19 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         '''инициализирует экземпляры класса Item из файла src/items.csv'''
-        csv_data = []
         with open('../src/items.csv') as csvfile:
             reader = csv.DictReader(csvfile)
+            cls.all = []
             for row in reader:
-                Item.__init__(row['name'], row['price'], row['quantity'])
-        #         csv_data.append(row['name'])
-        #         csv_data.append(row['price'])
-        # print(csv_data)
-        #         print(row)
-            #     csv_data.append(row['name'], row['price'], row['quantity'])
-
+                cls(row['name'], row['price'], row['quantity'])
+            return cls.all
 
     @staticmethod
     def string_to_number(number: str):
-        return int(number)
+        '''возвращает число из числа-строки'''
+        try:
+            new_number = int(number)
+        except ValueError:
+            # Try float.
+            new_number = int(float(number))
+        return new_number
