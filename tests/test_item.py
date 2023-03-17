@@ -21,3 +21,8 @@ def test_name_1(item_ifone):
 def test_string_to_number():
     assert Item.string_to_number('88.9') == 88
     assert Item.string_to_number('99') == 99
+def test__repr__(item_ifone):
+    assert item_ifone.__repr__() == "Item('Айфон', 80000, 10)"
+
+def test__str__(item_ifone):
+    assert item_ifone.__str__() == "Айфон"
