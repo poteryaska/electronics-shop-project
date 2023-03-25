@@ -36,13 +36,13 @@ def test_add():
 
 
 @pytest.fixture
-def item_test_1():
+def phone_test_1():
     return Phone("Nokia 3310", 1000, 2, 0)
 
 
-def test_number_of_sim_1(item_test_1):
+def test_number_of_sim_1(phone_test_1):
     with pytest.raises(ValueError, match='Количество физических SIM-карт должно быть целым числом больше нуля.'):
-        item_test_1.number_of_sim = 0
+        phone_test_1.number_of_sim = 0
 
 
 class TestPhone:
