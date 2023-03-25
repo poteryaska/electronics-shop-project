@@ -35,6 +35,16 @@ def test_add():
         assert phone_1 + test_phone == 'Класс не найден'
 
 
+@pytest.fixture
+def item_test_1():
+    return Phone("Nokia 3310", 1000, 2, 0)
+
+
+def test_number_of_sim_1(item_test_1):
+    with pytest.raises(ValueError, match='Количество физических SIM-карт должно быть целым числом больше нуля.'):
+        item_test_1.number_of_sim = 0
+
+
 class TestPhone:
     def __init__(self, name: str, price: float, quantity: int) -> None:
         self.__name = name
