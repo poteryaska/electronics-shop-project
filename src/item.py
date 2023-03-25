@@ -1,5 +1,6 @@
 import csv
 
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -27,10 +28,11 @@ class Item:
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __add__(self, other):
+        '''Складывает количество товаров двух экземпляров'''
         if isinstance(other, Item):
             return self.quantity + other.quantity
         else:
-            raise TypeError
+            raise TypeError('Класс не найден')
 
 
     def calculate_total_price(self) -> float:
