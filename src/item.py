@@ -20,6 +20,7 @@ class Item:
         self.price = price
         self.quantity = quantity
         self.all.append(self)
+        super().__init__()
 
     def __str__(self):
         return f'{self.__name}'
