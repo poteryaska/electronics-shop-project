@@ -9,13 +9,13 @@ class KeyBoardMixin:
         """Возвращает раскладку клавиатуры"""
         return self.__language
 
-    # @language.setter
-    # def language(self, new_language):
-    #     """Устанавливает раскладку клавиатуры"""
-    #     if new_language == 'RU' or new_language == 'EN':
-    #         self.__language = new_language
-    #     else:
-    #         raise AttributeError("Unknown language")
+    @language.setter
+    def language(self, new_language):
+        """Устанавливает раскладку клавиатуры"""
+        if new_language == 'RU' or new_language == 'EN':
+            self.__language = new_language
+        else:
+            raise AttributeError("Unknown language")
 
     def change_lang(self):
         """Изменяет раскладку клавиатуры """

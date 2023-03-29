@@ -12,6 +12,9 @@ def test_change_lang(test_keyboard):
     assert test_keyboard.language == 'EN'
     test_keyboard.change_lang()
     assert test_keyboard.language == 'RU'
+    test_keyboard.change_lang()
+    assert test_keyboard.language == 'EN'
+
 
 def test_language(test_keyboard):
     with pytest.raises(AttributeError, match='Unknown language'):
