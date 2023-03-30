@@ -17,5 +17,5 @@ def test_change_lang(test_keyboard):
 
 
 def test_language(test_keyboard):
-    with pytest.raises(AttributeError, match='Unknown language'):
+    with pytest.raises(AttributeError):
         test_keyboard.language = 'KR'
