@@ -62,14 +62,26 @@ class Item:
 
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls, data='../src/items.csv'):
         '''инициализирует экземпляры класса Item из файла src/items.csv'''
-        with open('../src/items.csv') as csvfile:
-            reader = csv.DictReader(csvfile)
-            cls.all = []
-            for row in reader:
-                cls(row['name'], row['price'], row['quantity'])
-            return cls.all
+        try:
+            with open(data) as csvfile:
+                reader = csv.DictReader(csvfile)
+                cls.all = []
+                for row in reader:
+                    if row['name'] and row['price'] and row['quantity'] is not None:
+                        cls(row['name'], row['price'], row['quantity'])
+                    else:
+                        raise InstantiateCSVError
+                return cls.all
+        except FileNotFoundError:
+            print('Отсутствует файл items.csv')
+        except InstantiateCSVError:
+            cvs_error = InstantiateCSVError()
+            print(cvs_error)
+
+
+
 
     @staticmethod
     def string_to_number(number: str):
@@ -80,3 +92,8 @@ class Item:
             # Try float.
             new_number = int(float(number))
         return new_number
+
+class InstantiateCSVError(Exception):
+    '''Класс-исключение, который проверяет не поврежден ли файл'''
+    def __str__(self):
+        return f"Файл item.csv поврежден"
