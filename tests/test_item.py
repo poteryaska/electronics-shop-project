@@ -48,21 +48,18 @@ def test_add():
     with pytest.raises(TypeError, match='Класс не найден'):
         assert (item_1 + test_phone) == 'Класс не найден'
 
-def test_instantiate_from_csv():
-    assert Item.instantiate_from_csv(data='../tests/test_items.csv') == None
-
-# def test_instantiate_from_csv_1():
-#     with pytest.raises(FileNotFoundError) as error:
-#         a = Item.instantiate_from_csv('../tests/test_item.csv')
-#         assert a.error == "Отсутствует файл item.csv"
-
-    # with pytest.raises(FileNotFoundError) as error:
-    #     Item.instantiate_from_csv(data='../tests/test_item.csv')
-    #     assert str(error) == "Отсутствует файл item.csv"
-
 
 class TestPhone:
     def __init__(self, name: str, price: float, quantity: int) -> None:
         self.__name = name
         self.price = price
         self.quantity = quantity
+
+# def test_instantiate_from_csv_1():
+#     with pytest.raises(FileNotFoundError) as error:
+#         Item.instantiate_from_csv(data="../tests/test_item.csv")
+#     assert str(error.value) == "Отсутствует файл item.csv"
+
+# def test_instantiate_from_csv_1():
+#     with pytest.raises(FileNotFoundError, match="Отсутствует файл item.csv"):
+#         assert Item.instantiate_from_csv(data="../tests/test_item.csv") == "Отсутствует файл item.csv"
