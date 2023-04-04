@@ -35,6 +35,7 @@ class Item:
         else:
             raise TypeError('Класс не найден')
 
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -42,6 +43,7 @@ class Item:
         :return: Общая стоимость товара.
         """
         return self.price * self.quantity
+
 
     def apply_discount(self) -> None:
         """
@@ -52,7 +54,6 @@ class Item:
     @property
     def name(self):
         return self.__name
-
     @name.setter
     def name(self, value: str):
         if len(value) > 10:
@@ -72,8 +73,8 @@ class Item:
                     else:
                         raise InstantiateCSVError
         except InstantiateCSVError:
-            a = InstantiateCSVError()
-            print(a)
+            csv_error = InstantiateCSVError()
+            print(csv_error)
         except FileNotFoundError:
             print('Отсутствует файл items.csv')
         else:
@@ -93,7 +94,7 @@ class Item:
 class InstantiateCSVError(Exception):
     '''Класс-исключение, который проверяет не поврежден ли файл'''
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         self.message = args[0] if args else "Файл item.csv поврежден"
 
     def __str__(self):
