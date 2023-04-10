@@ -55,10 +55,6 @@ class TestPhone:
         self.price = price
         self.quantity = quantity
 
-# def test_instantiate_from_csv_1():
-#     with pytest.raises(FileNotFoundError) as error:
-#         Item.instantiate_from_csv(data="../tests/test_item.csv")
-#     assert str(error.value) == "Отсутствует файл item.csv"
 
 def test_instantiate_from_csv_1():
     with pytest.raises(FileNotFoundError, match='Отсутствует файл items.csv') as error:
