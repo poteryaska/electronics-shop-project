@@ -61,5 +61,5 @@ class TestPhone:
 #     assert str(error.value) == "Отсутствует файл item.csv"
 
 def test_instantiate_from_csv_1():
-    with pytest.raises(FileNotFoundError, match='Отсутствует файл item.csv') as error:
-        Item.instantiate_from_csv(data="../tests/test_item.csv")
+    with pytest.raises(FileNotFoundError, match='Отсутствует файл items.csv') as error:
+        Item.instantiate_from_csv(data="../tests/voo.csv")

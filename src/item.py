@@ -1,4 +1,6 @@
 import csv
+import json
+import os.path
 
 
 class Item:
@@ -63,6 +65,8 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, data='../src/items.csv'):
         '''инициализирует экземпляры класса Item из файла src/items.csv'''
+        if not os.path.exists(data):
+            raise FileNotFoundError('Отсутствует файл items.csv')
         try:
             with open(data) as csvfile:
                 reader = csv.DictReader(csvfile)
@@ -72,11 +76,8 @@ class Item:
                         cls(row['name'], row['price'], row['quantity'])
                     else:
                         raise InstantiateCSVError
-        except InstantiateCSVError:
-            csv_error = InstantiateCSVError()
-            print(csv_error)
-        except FileNotFoundError:
-            print('Отсутствует файл items.csv')
+        except json.JSONDecodeError:
+            raise InstantiateCSVError()
         else:
             return cls.all
 
